@@ -7,11 +7,57 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Fira+Sans:700&display=swap" rel="stylesheet">
-  <title>Fotournament 0.1</title>
+  <title></title>
 </head>
 
-<body id="body">
-  <p>chups my below</p>
+<body onmouseup="hideinput()"
+  style="display: flex; width: 100vw; height: 100vh; justify-content: center; align-items: center;">
+  <input id="colorpick" type="color" onchange="turnpage()">
+  <script>
+    turnpage = function () {
+      document.getElementsByTagName('body').item(0).style.background = document.getElementsByTagName('input').item(0).value;
+    }
+    rgbToHex = function (rgb) {
+      var hex = Number(rgb).toString(16);
+      if (hex.length < 2) {
+        hex = "0" + hex;
+      }
+      return hex;
+    };
+    rand = function (min, max) {
+      if (min == null && max == null)
+        return 0;
+
+      if (max == null) {
+        max = min;
+        min = 0;
+      }
+      return min + Math.floor(Math.random() * (max - min + 1));
+    };
+    hideinput = function () {
+      console.log('teste');
+      if (zero) {
+        document.getElementsByTagName('input').item(0).style.display = 'block';
+        zero = false;
+        console.log(zero);
+      } else {
+        if (!zero) {
+          document.getElementsByTagName('input').item(0).style.display = 'none';
+          zero = true;
+          console.log(zero);
+        }
+      }
+    }
+    var zero = true;
+    r = rand(0, 255);
+    g = rand(0, 255);
+    b = rand(0, 255);
+    color = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+    hexcolor = '#' + rgbToHex(r) + rgbToHex(g) + rgbToHex(b);
+    document.getElementsByTagName('body').item(0).style.background = color;
+    document.getElementsByTagName('input').item(0).value = hexcolor;
+    document.getElementsByTagName('input').item(0).style.display = 'none';
+  </script>
 </body>
 
 </html>
